@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">P2P Messaging</string>
+    <string name="find">Discover</string>
+    <string name="share">Advertise</string>
+    <string name="error_missing_permissions">Cannot start without required permissions</string>
+    <string name="endpoint_name">Device A</string>
+    <string name="hint_message">Type a message</string>
+    <string name="devices">Devices</string>
+    <string name="logs">Logs</string>
+    <string name="ok">OK</string>
+
+</resources>

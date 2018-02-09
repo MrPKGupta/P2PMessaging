@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_views_standard"
+    android:layout_gravity="right"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvMessage"
+        style="?android:attr/textAppearanceMedium"
+        android:paddingLeft="@dimen/margin_views_standard"
+        android:paddingRight="@dimen/margin_views_standard"
+        android:paddingTop="@dimen/margin_message"
+        android:paddingBottom="@dimen/margin_message"
+        android:background="@drawable/bg_message_sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="I am good" />
+
+</LinearLayout>

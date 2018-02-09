@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_views_standard">
+
+    <TextView
+        style="@style/AppTheme.headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/devices" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDevice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/border"
+        android:orientation="vertical" />
+
+    <TextView
+        style="@style/AppTheme.headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_views_standard"
+        android:text="@string/logs" />
+
+    <TextView
+        android:id="@+id/tvLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:lines="@integer/log_lines" />
+
+    <Button
+        android:id="@+id/btnFind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_views_standard"
+        android:layout_marginTop="@dimen/margin_views_standard"
+        android:text="@string/find" />
+
+    <Button
+        android:id="@+id/btnShare"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_views_standard"
+        android:text="@string/share" />
+
+</LinearLayout>
