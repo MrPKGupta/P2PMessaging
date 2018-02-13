@@ -34,10 +34,10 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         switch (viewType) {
             case TYPE_SENT:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_sent, parent, false);
-                return new SentMessageHolder(view);
+                return new MessageHolder(view);
             case TYPE_RECEIVED:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_received, parent, false);
-                return new ReceivedMessageHolder(view);
+                return new MessageHolder(view);
         }
         return null;
     }
@@ -57,30 +57,14 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Message message = messages.get(position);
         if (message != null) {
-            switch (message.getType()) {
-                case TYPE_SENT:
-                    ((SentMessageHolder) holder).tvMessage.setText(message.getText());
-                    break;
-                case TYPE_RECEIVED:
-                    ((ReceivedMessageHolder) holder).tvMessage.setText(message.getText());
-                    break;
-            }
+            ((MessageHolder) holder).tvMessage.setText(message.getText());
         }
     }
 
-    static class SentMessageHolder extends RecyclerView.ViewHolder {
+    static class MessageHolder extends RecyclerView.ViewHolder {
         TextView tvMessage;
 
-        SentMessageHolder(View view) {
-            super(view);
-            tvMessage = view.findViewById(R.id.tvMessage);
-        }
-    }
-
-    static class ReceivedMessageHolder extends RecyclerView.ViewHolder {
-        TextView tvMessage;
-
-        ReceivedMessageHolder(View view) {
+        MessageHolder(View view) {
             super(view);
             tvMessage = view.findViewById(R.id.tvMessage);
         }
@@ -88,6 +72,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public void addMessage(Message message) {
         messages.add(message);
-        notifyItemInserted(messages.size());
+        notifyItemInserted(0);
     }
 }

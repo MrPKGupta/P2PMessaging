@@ -60,20 +60,14 @@ public class MessagingFragment extends Fragment implements MessagingContract.Vie
                 etMessage.setText("");
             }
         });
-
+        presenter.start();
         return root;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        presenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
         presenter.stop();
+        super.onDestroyView();
     }
 
     @Override

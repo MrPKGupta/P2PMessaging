@@ -9,13 +9,17 @@
         <item name="buttonStyle">@style/AppTheme.Button</item>
     </style>
 
-    <style name="AppTheme.headerText" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="AppTheme.Button" parent="Base.Widget.AppCompat.Button">
         <item name="android:background">@drawable/bg_button</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="styleEndpoint" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="styleTextStatus" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>

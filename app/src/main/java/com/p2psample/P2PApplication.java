@@ -2,6 +2,8 @@ package com.p2psample;
 
 import android.app.Application;
 
+import timber.log.Timber;
+
 /**
  * Created by Purushottam Gupta on 2/6/2018.
  */
@@ -17,5 +19,9 @@ public class P2PApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 }

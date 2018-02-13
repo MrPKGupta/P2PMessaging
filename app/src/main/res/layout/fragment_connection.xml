@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/margin_views_standard">
 
-    <TextView
-        style="@style/AppTheme.headerText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layoutStatus"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/devices" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/styleTextStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Advertising..." />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_views_standard"
+            android:layout_marginTop="@dimen/margin_views_standard" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDevice"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/border"
-        android:orientation="vertical" />
-
-    <TextView
-        style="@style/AppTheme.headerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_views_standard"
-        android:text="@string/logs" />
-
-    <TextView
-        android:id="@+id/tvLog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:lines="@integer/log_lines" />
+        android:orientation="vertical"
+        tools:listitem="@layout/item_message_received" />
 
     <Button
         android:id="@+id/btnFind"

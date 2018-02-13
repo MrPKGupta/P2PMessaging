@@ -34,7 +34,7 @@ public class MessagingPresenter implements MessagingContract.Presenter {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessaging(MessageEvent event) {
+    public void onMessageReceived(MessageEvent event) {
         messagingView.onReceivedMessage(event.getMessage());
     }
 

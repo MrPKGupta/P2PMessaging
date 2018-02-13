@@ -40,7 +40,9 @@ public class ConnectionFragment extends Fragment implements ConnectionContract.V
 
     private Button btnFind;
     private Button btnShare;
-    private TextView tvLog;
+    private LinearLayout layoutStatus;
+    private TextView tvStatus;
+
     private String endPointName;
 
     public static ConnectionFragment newInstance() {
@@ -59,7 +61,8 @@ public class ConnectionFragment extends Fragment implements ConnectionContract.V
 
         btnFind = root.findViewById(R.id.btnFind);
         btnShare = root.findViewById(R.id.btnShare);
-        tvLog = root.findViewById(R.id.tvLog);
+        tvStatus = root.findViewById(R.id.tvStatus);
+        layoutStatus = root.findViewById(R.id.layoutStatus);
 
         RecyclerView rvDevices = root.findViewById(R.id.rvDevice);
         rvDevices.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -80,11 +83,11 @@ public class ConnectionFragment extends Fragment implements ConnectionContract.V
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnFind:
-                disableControl();
+                showStatus(view.getId());
                 presenter.findConnection(getContext().getPackageName());
                 break;
             case R.id.btnShare:
-                disableControl();
+                showStatus(view.getId());
                 //getEndPointName();
                 presenter.shareConnection(endPointName, getContext().getPackageName());
                 break;
@@ -123,21 +126,25 @@ public class ConnectionFragment extends Fragment implements ConnectionContract.V
         builder.show();
     }
 
-    private void disableControl() {
+    private void showStatus(int action) {
         btnFind.setEnabled(false);
         btnShare.setEnabled(false);
+        layoutStatus.setVisibility(View.VISIBLE);
+        if (action == R.id.btnFind) {
+            tvStatus.setText(getResources().getString(R.string.discovering));
+        } else if (action == R.id.btnShare) {
+            tvStatus.setText(getResources().getString(R.string.advertising));
+        }
     }
 
     @Override
     public void addEndPoint(Endpoint endpoint) {
-        tvLog.append("EndPoint found " + endpoint.getName());
         endPointListAdapter.add(endpoint);
     }
 
     @Override
     public void removeEndPoint(String endPointId) {
         //endPointListAdapter.remove(position);
-        tvLog.append("EndPoint lost " + endPointId);
     }
 
     @Override

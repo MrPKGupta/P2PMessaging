@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_views_standard"
+    android:paddingRight="@dimen/message_padding_one_side"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +12,7 @@
         style="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_message_sent"
+        android:background="@drawable/balloon_incoming_normal"
         android:paddingBottom="@dimen/margin_message"
         android:paddingLeft="@dimen/margin_views_standard"
         android:paddingRight="@dimen/margin_views_standard"

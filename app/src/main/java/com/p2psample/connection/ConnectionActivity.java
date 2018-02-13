@@ -2,6 +2,7 @@ package com.p2psample.connection;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.p2psample.LogActivity;
 import com.p2psample.R;
 import com.p2psample.util.ActivityUtils;
 
@@ -47,7 +51,7 @@ public class ConnectionActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if (Build.VERSION.SDK_INT >= 23 && !hasPermissions(this, REQUIRED_PERMISSIONS)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !hasPermissions(this, REQUIRED_PERMISSIONS)) {
             requestPermissions(REQUIRED_PERMISSIONS, REQUEST_CODE_REQUIRED_PERMISSIONS);
         }
     }
@@ -80,5 +84,24 @@ public class ConnectionActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_connections, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.logs) {
+            launchLogActivity();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void launchLogActivity() {
+        Intent intent = new Intent(this, LogActivity.class);
+        startActivity(intent);
     }
 }

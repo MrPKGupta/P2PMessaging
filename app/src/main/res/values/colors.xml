@@ -6,5 +6,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBgMessaging">#a1c6a0ad</color>
     <color name="colorMessageSent">#c09fd6c6</color>
-    <color name="colorMessageReceived">#ffffff</color>
+    <color name="colorMessageReceived">#da9d9d</color>
 </resources>
