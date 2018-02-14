@@ -30,6 +30,7 @@
         </activity>
         <activity
             android:name=".LogActivity"
+            android:label="@string/logs"
             android:parentActivityName=".connection.ConnectionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

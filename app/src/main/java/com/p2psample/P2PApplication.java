@@ -2,6 +2,8 @@ package com.p2psample;
 
 import android.app.Application;
 
+import com.p2psample.util.FileLoggingTree;
+
 import timber.log.Timber;
 
 /**
@@ -21,7 +23,7 @@ public class P2PApplication extends Application {
         sInstance = this;
 
         if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
+            Timber.plant(new FileLoggingTree(getApplicationContext()));
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.p2psample.nearby;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.nearby.Nearby;
 import com.google.android.gms.nearby.connection.AdvertisingOptions;
@@ -24,6 +23,8 @@ import com.p2psample.messaging.events.MessageEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import timber.log.Timber;
+
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
@@ -31,7 +32,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  */
 
 public class NearBySource {
-    private static final String TAG = NearBySource.class.getSimpleName();
     private static NearBySource nearBySource;
     private ConnectionsClient connectionsClient;
     private static final Strategy STRATEGY = Strategy.P2P_STAR;
@@ -56,27 +56,27 @@ public class NearBySource {
             new ConnectionLifecycleCallback() {
                 @Override
                 public void onConnectionInitiated(String endpointId, ConnectionInfo connectionInfo) {
-                    Log.d(TAG, String.format("onConnectionInitiated(endpointId=%s, endpointName=%s)",
-                            endpointId, connectionInfo.getEndpointName()));
+                    Timber.d("onConnectionInitiated(endpointId=" + endpointId + ", endpointName=" +
+                            connectionInfo.getEndpointName() + ")");
                     connectionsClient.acceptConnection(endpointId, payloadCallback);
                 }
 
                 @Override
                 public void onConnectionResult(String endpointId, ConnectionResolution result) {
                     if (result.getStatus().isSuccess()) {
-                        Log.i(TAG, "onConnectionResult: connection successful");
+                        Timber.i("onConnectionResult: connection successful");
                         connectionsClient.stopDiscovery();
                         connectionsClient.stopAdvertising();
                         connectedEndPointId = endpointId;
                         EventBus.getDefault().post(new ConnectionEvent.OnConnectionSuccess());
                     } else {
-                        Log.i(TAG, "onConnectionResult: connection failed");
+                        Timber.i("onConnectionResult: connection failed");
                     }
                 }
 
                 @Override
                 public void onDisconnected(String endpointId) {
-                    Log.i(TAG, "onDisconnected: disconnected from the endPoint " + endpointId);
+                    Timber.i("onDisconnected: disconnected from the endPoint " + endpointId);
                 }
             };
 
@@ -84,14 +84,14 @@ public class NearBySource {
             new EndpointDiscoveryCallback() {
                 @Override
                 public void onEndpointFound(String endpointId, DiscoveredEndpointInfo info) {
-                    Log.i(TAG, "onEndpointFound: endpoint found " + endpointId);
+                    Timber.i("onEndpointFound: endpoint found " + endpointId);
                     EventBus.getDefault().post(new DiscoveryEvent.OnEndPointFound(
                             new Endpoint(endpointId, info.getEndpointName())));
                 }
 
                 @Override
                 public void onEndpointLost(String endpointId) {
-                    Log.i(TAG, "onEndpointLost: endpoint lost " + endpointId);
+                    Timber.i("onEndpointLost: endpoint lost " + endpointId);
                     EventBus.getDefault().post(new DiscoveryEvent.OnEndPointLost(endpointId));
                 }
             };
@@ -128,7 +128,7 @@ public class NearBySource {
                         new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "sendPayload() failed.");
+                                Timber.d("sendPayload() failed.");
                             }
                         });
     }
